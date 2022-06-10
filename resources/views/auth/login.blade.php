@@ -33,6 +33,11 @@
                                         </ul>
                                     </div>
                                 @endif --}}
+                                @if (session('status'))
+                                    <div class="alert alert-success">
+                                        {{session('status')}}
+                                    </div>
+                                @endif
                                 <form class="user" method="POST" action="{{ route('login') }}">
                                     @csrf
                                     <div class="form-group">

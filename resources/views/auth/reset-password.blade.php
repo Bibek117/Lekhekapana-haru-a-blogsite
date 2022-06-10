@@ -1,48 +1,66 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+@extends('layouts.auth.guestlayout')
+@section('content')
+    <!-- Outer Row -->
+    <div class="row justify-content-center">
 
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+        <div class="col-xl-10 col-lg-12 col-md-9">
 
-        <form method="POST" action="{{ route('password.update') }}">
-            @csrf
+            <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card-body p-0">
+                    <!-- Nested Row within Card Body -->
+                    <div class="row">
+                        <div class="col-lg-6 d-none d-lg-block  bg-reset-image">
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="p-5">
+                                <div class="text-center">
+                                    <h1 class="h4 text-gray-900 mb-4">Password Reset  <span
+                                            style="color: rgb(18, 8, 106);font-size:2rem;font-weight:bolder;">LEKHEKA
+                                        </span><span
+                                        style="color: rgb(203, 27, 27);font-size:2rem;font-weight:bolder;">PANAHARU
+                                    </span></h1>
+                                </div>
+                                <form class="user" method="POST" action="{{ route('password.update') }}">
+                                    @csrf
+                                    {{-- password reset token --}}
+                                    <input type="hidden" name="token" value="{{$request->route('token')}}">
 
-            <!-- Password Reset Token -->
-            <input type="hidden" name="token" value="{{ $request->route('token') }}">
-
-            <!-- Email Address -->
-            <div>
-                <x-label for="email" :value="__('Email')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $request->email)" required autofocus />
+                                    <div class="form-group">
+                                        <input type="email" name="email" class="form-control form-control-user"
+                                            id="exampleInputEmail" aria-describedby="emailHelp"
+                                            placeholder="Enter Email Address..." value="{{ old('email',$request->email) }}" required
+                                            autofocus>
+                                        @error('email')
+                                            <p class="text-danger text-xs mt-1">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                    {{-- password --}}
+                                    <div class="form-group">
+                                        <input type="password" class="form-control form-control-user" id="exampleInputPassword"
+                                            placeholder="Password" name="password">
+                                            @error('password')
+                                            <p class="text-danger text-xs mt-1">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                    {{-- Confirm password --}}
+                                    <div class="form-group">
+                                        <input type="password" class="form-control form-control-user" id="exampleRepeatPassword"
+                                            placeholder="Confirm Password" name="password_confirmation">
+                                            @error('password_confirmation')
+                                            <p class="text-danger text-xs mt-1">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                    <button class="btn btn-primary btn-user btn-block">
+                                        Reset Password
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
+        </div>
 
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required />
-            </div>
-
-            <!-- Confirm Password -->
-            <div class="mt-4">
-                <x-label for="password_confirmation" :value="__('Confirm Password')" />
-
-                <x-input id="password_confirmation" class="block mt-1 w-full"
-                                    type="password"
-                                    name="password_confirmation" required />
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <x-button>
-                    {{ __('Reset Password') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+    </div>
+@endsection
