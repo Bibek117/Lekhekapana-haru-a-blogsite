@@ -14,14 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('auth.reset-password1');
+    return view('auth.verify-emailtest');
 });
 // Route::get('/admin/dashboard',function(){
 //     return view('admin.dashboard');
 // });
 Route::get('/admin/dashboard', function () {
-    
     return view('admin.dashboard');
-})->middleware(['auth','adminWriter'])->name('dashboard');
+})->middleware(['auth','adminWriter','verified'])->name('dashboard');
 
 require __DIR__.'/auth.php';
