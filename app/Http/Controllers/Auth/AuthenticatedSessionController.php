@@ -28,13 +28,17 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request)
     {
+        //@dd($request);
         $request->authenticate();
 
-        // if($request->remember == 1){
-        //     $request->remember;
-        //     setcookie('login_email',$request->email,time()+60*60*24*50);
-        //     setcookie('login_pwd',$request->password,time()+60*60*24*50);
-        // }
+        if($request->remember == null){
+           // $request->remember;
+           setcookie('login_email',$request->email,100);
+            setcookie('login_pwd',$request->password,100);
+        }else{
+            setcookie('login_email',$request->email,time()+60*60*24*50);
+            setcookie('login_pwd',$request->password,time()+60*60*24*50);
+        }
 
         $request->session()->regenerate();
 

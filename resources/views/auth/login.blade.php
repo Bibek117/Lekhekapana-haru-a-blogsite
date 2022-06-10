@@ -1,6 +1,17 @@
 @extends('layouts.auth.guestlayout')
 @section('content')
     <!-- Outer Row -->
+    @php
+        if(isset($_COOKIE['login_email']) && isset($_COOKIE['login_pwd'])){
+            $login_email = $_COOKIE['login_email'];
+            $login_pwd = $_COOKIE['login_pwd'];
+            $remember_check = "checked = 'checked'";
+        }else{
+            $login_email = "";
+            $login_pwd = "";
+            $remember_check = "";
+        }
+    @endphp
     <div class="row justify-content-center">
 
         <div class="col-xl-10 col-lg-12 col-md-9">
@@ -43,7 +54,7 @@
                                     <div class="form-group">
                                         <input type="email" name="email" class="form-control form-control-user"
                                             id="exampleInputEmail" aria-describedby="emailHelp"
-                                            placeholder="Enter Email Address..." value="{{ old('email') }}" required
+                                            placeholder="Enter Email Address..." value="{{ $login_email }}" required
                                             autofocus>
                                         @error('email')
                                             <p class="text-danger text-xs mt-1">{{ $message }}</p>
@@ -51,7 +62,7 @@
                                     </div>
                                     <div class="form-group">
                                         <input type="password" name="password" class="form-control form-control-user"
-                                            id="exampleInputPassword" placeholder="Password" required
+                                            id="exampleInputPassword" placeholder="Password" required value="{{$login_pwd}}"
                                             autocomplete="current-password">
                                         @error('password')
                                             <p class="text-danger text-xs mt-1">{{ $message }}</p>
@@ -59,7 +70,7 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="custom-control custom-checkbox small">
-                                            <input type="checkbox" name="remember" value="1" class="custom-control-input"
+                                            <input type="checkbox" name="remember" value="1" {{$remember_check}} class="custom-control-input"
                                                 id="customCheck">
                                             <label class="custom-control-label" for="customCheck">Remember
                                                 Me</label>
