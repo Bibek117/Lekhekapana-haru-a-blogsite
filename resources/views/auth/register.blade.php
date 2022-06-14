@@ -1,4 +1,4 @@
-@extends('layouts.auth.guestlayout')
+@extends('layouts.authlayout')
 @section('content')
     <div class="card o-hidden border-0 shadow-lg my-5">
         <div class="card-body p-0">

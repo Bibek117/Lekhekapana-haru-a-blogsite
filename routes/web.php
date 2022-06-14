@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\AdminWriter;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,14 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('auth.verify-emailtest');
-});
-// Route::get('/admin/dashboard',function(){
-//     return view('admin.dashboard');
+// Route::get('/', function () {
+//     return view('auth.confirm');
 // });
-Route::get('/admin/dashboard', function () {
-    return view('admin.dashboard');
-})->middleware(['auth','adminWriter','verified'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+Route::middleware(['auth','verified','adminWriter'])->group(function (){
+    Route::get('/admin/dashboard', function () {
+        return view('admin.dashboard');
+    })->name('dashboard');
+    Route::get('/',function(){
+        return view('welcome');
+    })->middleware('password.confirm');
+});
+
+require __DIR__ . '/auth.php';
