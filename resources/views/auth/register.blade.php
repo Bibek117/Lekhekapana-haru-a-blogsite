@@ -10,6 +10,11 @@
                         <div class="text-center">
                             <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                         </div>
+                        @if (session('status'))
+                        <div class="alert alert-{{session('color')}}">
+                            {{session('status')}}
+                        </div>
+                    @endif
                         <form class="user" method="POST" action="{{ route('register') }}">
                             @csrf
                             <div class="form-group">
@@ -65,10 +70,10 @@
 
                             {{-- open auth --}}
                             <a href="{{route('google.redirect')}}" class="btn btn-google btn-user btn-block">
-                                <i class="fab fa-google fa-fw"></i> Register with Google
+                                <i class="fab fa-google fa-fw"></i> Register/Login with Google
                             </a>
                             <a href="{{route('facebook.redirect')}}" class="btn btn-facebook btn-user btn-block">
-                                <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
+                                <i class="fab fa-facebook-f fa-fw"></i> Register/Login with Facebook
                             </a>
                         
 
