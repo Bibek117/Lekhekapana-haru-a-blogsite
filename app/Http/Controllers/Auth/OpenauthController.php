@@ -47,7 +47,7 @@ class OpenauthController extends Controller
     {
         try{
             $gmailUser = Socialite::driver('google')->stateless()->user();
-            $user  =  User::where('oauth_id',$gmailUser->id)->first();
+            // $user  =  User::where('oauth_id',$gmailUser->id)->first();
        $user = User::firstOrCreate([
            'oauth_id' => $gmailUser->id],
            ['name' => $gmailUser->name,
