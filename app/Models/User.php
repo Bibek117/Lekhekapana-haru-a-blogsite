@@ -22,8 +22,12 @@ class User extends Authenticatable implements MustVerifyEmail
         'user_type',
         'email',
         'password',
+        'oauth_id',
     ];
 
+    protected $attributes = [
+        'user_type' => "general",
+    ];
     /**
      * The attributes that should be hidden for serialization.
      *

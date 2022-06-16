@@ -27,8 +27,8 @@
                                     <p class="text-danger text-xs mt-1">{{ $message }}</p>
                                 @enderror
                             </div>
-                            {{-- User type --}}
-                             <div class="form-group">
+                           {{-- User type --}}
+                             {{-- <div class="form-group">
                                   <select name="user_type" class="form-select form-control select-css">
                                     <option value="" disabled selected>Select a user type</option>
                                     <option value="postWriter">Post writer</option>
@@ -37,7 +37,7 @@
                                   @error('user_type')
                                   <p class="text-danger text-xs mt-1">{{ $message }}</p>
                               @enderror
-                             </div>
+                             </div> --}}
         
                                 <!-- Password -->
                             <div class="form-group row">
@@ -63,14 +63,14 @@
                             <hr>
 
 
-                            {{-- later --}}
-                            <a href="index.html" class="btn btn-google btn-user btn-block">
+                            {{-- open auth --}}
+                            <a href="{{route('google.redirect')}}" class="btn btn-google btn-user btn-block">
                                 <i class="fab fa-google fa-fw"></i> Register with Google
                             </a>
-                            <a href="index.html" class="btn btn-facebook btn-user btn-block">
+                            <a href="{{route('facebook.redirect')}}" class="btn btn-facebook btn-user btn-block">
                                 <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
                             </a>
-                            {{-- later --}}
+                        
 
                             
                         </form>
