@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Blogsite Admin</title>
+    <title>{{config('app.name')}} Dashboard</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{url('admin/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">

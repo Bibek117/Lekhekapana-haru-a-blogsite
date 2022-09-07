@@ -16,7 +16,7 @@ use App\Http\Middleware\AdminWriter;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('front.homepage');
 });
 
 
@@ -30,6 +30,10 @@ Route::middleware(['auth','verified'])->group(function (){
     })->middleware('password.confirm');
 });
 
+
+
+
+ 
 //socialite facebook login
 Route::prefix('auth/facebook')->name('facebook.')->group(function(){
     Route::get('/redirect',[OpenauthController::class,'redirectFacebook'])->name('redirect');

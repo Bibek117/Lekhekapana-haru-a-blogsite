@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
-    <title>Lekheka Panaharu</title>
+    <title>{{config('app.name')}}</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{ url('admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
